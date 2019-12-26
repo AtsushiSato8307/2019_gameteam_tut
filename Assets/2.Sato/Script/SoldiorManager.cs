@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SoldiorManager : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class SoldiorManager : MonoBehaviour
 
     [SerializeField, Tooltip("軍団の配列")]
     public GameObject[] SoldiorArray;
+
+    [SerializeField, Tooltip("カウンター")]
+    private Text counter;
 
 
     // Start is called before the first frame update
@@ -20,7 +24,7 @@ public class SoldiorManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        counter.text = SoldiorNumber.ToString() + "人";
     }
     private void Alignment()
     {

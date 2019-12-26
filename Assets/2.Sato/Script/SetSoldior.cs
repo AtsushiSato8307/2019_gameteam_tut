@@ -18,6 +18,9 @@ public class SetSoldior : MonoBehaviour
     [SerializeField, Tooltip("隊列間隔")]
     private float interval;
 
+    [SerializeField, Tooltip("隊列配置")]
+    private GameObject SetPoints;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,25 +39,28 @@ public class SetSoldior : MonoBehaviour
         for (int i = 0; i < manager.SoldiorArray.Length; i++)
         {
             // 雑兵をセット、生成
-            manager.SoldiorArray[i] = Instantiate(setSoldiorPrefs[0]); 
+            manager.SoldiorArray[i] = Instantiate(setSoldiorPrefs[0]);
 
             // 雑兵の初期位置を設定
-            switch (i)
-            {
-                // 1人目
-                case 0:
-                    manager.SoldiorArray[i].GetComponent<Soldior>().OffsetPosition = new Vector3(-interval, 0);
-                    break;
-                // 2人目
-                case 1:
-                    manager.SoldiorArray[i].GetComponent<Soldior>().OffsetPosition = new Vector3(interval, 0);
-                    break;
-                // 以降
-                default:
-                    manager.SoldiorArray[i].GetComponent<Soldior>().OffsetPosition = new Vector3((interval * (i % 5)) - interval * 2, 0, (interval * (i / 5)) - interval * 2);
-                    break;
+            //switch (i)
+            //{
+            //    // 1人目
+            //    case 0:
+            //        manager.SoldiorArray[i].GetComponent<Soldior>().OffsetPosition = new Vector3(-interval, 0);
+            //        break;
+            //    // 2人目
+            //    case 1:
+            //        manager.SoldiorArray[i].GetComponent<Soldior>().OffsetPosition = new Vector3(interval, 0);
+            //        break;
+            //    // 以降
+            //    default:
+            //        manager.SoldiorArray[i].GetComponent<Soldior>().OffsetPosition = new Vector3((interval * (i % 5)) - interval * 2, 0, (interval * (i / 5)) - interval * 2);
+            //        break;
 
-            }
+            //}
+            manager.SoldiorArray[i].GetComponent<Soldior>().OffsetPosition 
+                = SetPoints.GetComponent<SetSoldiorPoints>().node[i].position;
+
         }
     }
 }
