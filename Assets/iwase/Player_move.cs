@@ -33,8 +33,7 @@ public class Player_move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var childtransform = GameObject.Find("Sphere").transform;
-
+     
         // 向きを変更
         if (Input.GetKeyDown(KeyCode.UpArrow))
           {        
